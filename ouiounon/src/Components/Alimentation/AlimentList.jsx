@@ -1,14 +1,15 @@
-import React from "react";
-import Aliment from "./Aliment";
+import React from 'react';
+import SearchBar from './SearchBar';
+import Aliment from './Aliment';
 
-const AlimentList = ({ aliments }) => {
+function AlimentList(props) {
   return (
     <div>
-      {aliments.map((job, index) => (
-        <Aliment {...job} key={index} style={{ marginTop: 15 }} />
-      ))}
+      <SearchBar />
+      <Aliment />
+      
     </div>
   );
-};
+}
 
 export default AlimentList;
