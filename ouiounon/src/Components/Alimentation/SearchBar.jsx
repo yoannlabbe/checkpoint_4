@@ -1,6 +1,6 @@
 import { TextField } from "@material-ui/core";
 import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { useHistory } from "react-router";
 
@@ -10,32 +10,14 @@ export default function SearchBar() {
   const [keyword, setKeyword] = React.useState("");
   const router = useHistory();
 
-  React.useEffect(() => {
-    let active = true;
-    console.log("ça marche?");
-
-    (async () => {
-      const response = await axios.get(
-        "http://localhost:3031/alimentation?keyword=" + keyword
-      );
-
-      const aliments = response.data;
-      console.log(aliments);
-      if (active) {
-        setOptions(aliments);
-      }
-    })();
-
-    return () => {
-      active = false;
-    };
-  }, [keyword]);
-
-  React.useEffect(() => {
-    if (!open) {
-      setOptions([]);
-    }
-  }, [open]);
+ useEffect(() => {
+      axios.get(
+        `http://localhost:3031/alimentation?keyword=${keyword}"`)
+        .then((response) => response.data)
+        .then((data) => {
+            setOptions(data);
+        });
+    }, [keyword]);
 
   return (
     <div
