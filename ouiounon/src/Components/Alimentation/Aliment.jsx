@@ -6,6 +6,12 @@ import React, { useEffect, useState } from "react";
 const Aliment = () => {
   const [list, setList] = useState([]);
 
+  // const [aliment, setAliment] = useState({
+  //   name:"",
+  //   autorisation:"",
+  //   description:"",
+  // });
+
   useEffect(() => {
     axios
       .get("http://localhost:3031/alimentation")
@@ -34,9 +40,9 @@ const Aliment = () => {
               width: "150px",
             }}
           >
-            <h3 style={{ color: "blue" }}>{row.name}</h3>
-            <p style={{ fontStyle: "italic" }}>{row.autorisation}</p>
-            <p>{row.description}</p>
+            <h3 style={{ color: "blue" }} >{row.name}</h3>
+            <p style={{ fontStyle: "italic" }} >{row.autorisation}</p>
+            <p >{row.description}</p>
           </div>
         </Card>
       ))}
